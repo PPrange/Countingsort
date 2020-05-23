@@ -16,7 +16,7 @@ class CountingSort
 			if(arr[i] > max) max = arr[i] +10;
 		}
 
-		// Create a count array to store count of inidividul 
+		// Create a count array to store count of individual
 		// characters and initialize count array as 0 
 		int count[] = new int[max];
 		for (int i=0; i<max; ++i)
