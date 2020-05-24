@@ -1,17 +1,18 @@
+import java.util.Scanner;
+
 public class Quicksort {
 
 	
- 	int p = 1;
-	int swap; //perhaps = 0
+ 	//int p = 1;
+	int swap;
 	int[] array;
-	int r = array.length;
+	//int r = array.length;
 
 	public Quicksort(int[] array) {
-	this.array = array;
+		this.array = array;
 	}
 	
 	public int partition (int p, int r) {
-
 		int x = array[r];
 		int i = p - 1;
 
@@ -24,20 +25,21 @@ public class Quicksort {
 			array[j] = swap;
 			}
 
+		}
 		swap = array[i+1];
 		array[i+1] = array[r];
 		array[r] = swap;
-
-		}
 		return i++;
 	}
 
 
 	public int[] quicksort(int p, int r) {
 		int q;
+
 		if (p < r) {
-			q = partition (r, p);
-			quicksort(p, q);
+			q = partition (p, r);
+			System.out.println(q);
+			quicksort(p, q-1);
 			quicksort(q + 1, r);
 		}
 		return array;
@@ -46,17 +48,32 @@ public class Quicksort {
 
 
 
-	public static void main(String[] args) {
+	public static void main(String args[])
+	{
+		Scanner s = new Scanner(System.in);
 
-	Quicksort array1 = new Quicksort (new int[]{5,7,4,2,3,1,9,8,6});
+		System.out.println("Enter the amount of numbers to sort:");
+		int length = s.nextInt();
 
+		System.out.println("Enter the numbers to sort:");
+		int[] array = new int[length];
+		for(int i=0; i<length; i++ ) {
+			array[i] = s.nextInt();
+		}
 
-	int[] sortArray1 = array1.quicksort(1,9);
+		Quicksort sortMe = new Quicksort(array);
 
-	System.out.println(sortArray1[1]);
-	
+		sortMe.quicksort(1,array.length-1);
+
+		for (int i=0; i<array.length; ++i) {
+			if(i == 0) {
+				System.out.print(array[i]);
+			}else{
+				System.out.print(" : ");
+				System.out.print(array[i]);
+			}
+		}
 	}
-	
 }
 
 /*

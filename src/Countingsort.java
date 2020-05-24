@@ -7,8 +7,8 @@ class CountingSort
 	{
 		int n = arr.length;
 
-		// The output character array that will have sorted arr
-		int[] output = new int[n];
+		// The swapArray character array that will have sorted arr
+		int[] swapArray = new int[n];
 
 		//finds biggest variable in array
 		int max = 0;
@@ -27,22 +27,22 @@ class CountingSort
 			++count[arr[i]];
 
 		// Change count[i] so that count[i] now contains actual
-		// position of this character in output array
+		// position of this character in swapArray array
 		for (int i=1; i<=max-1; ++i)
 			count[i] += count[i-1];
 
-		// Build the output character array
+		// Build the swapArray character array
 		// To make it stable we are operating in reverse order.
 		for (int i = n-1; i>=0; i--)
 		{
-			output[count[arr[i]]-1] = arr[i];
+			swapArray[count[arr[i]]-1] = arr[i];
 			--count[arr[i]];
 		}
 
-		// Copy the output array to arr, so that arr now
+		// Copy the swapArray array to arr, so that arr now
 		// contains sorted characters
 		for (int i = 0; i<n; ++i)
-			arr[i] = output[i];
+			arr[i] = swapArray[i];
 	}
 
 
