@@ -63,7 +63,7 @@ public class Quicksort {
 
 		Quicksort sortMe = new Quicksort(array);
 
-		sortMe.quicksort(1,array.length-1);
+		sortMe.quicksort(0,array.length-1);
 
 		for (int i=0; i<array.length; ++i) {
 			if(i == 0) {
