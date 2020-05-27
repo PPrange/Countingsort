@@ -10,29 +10,22 @@ public class Quicksort {
 	}
 	
 	public int partition (int p, int r) {
-		int i = p - 1;
-
-		if (array[r]<=array[p]) {
-			swap = array[r];
-			array[r] = array[p];
-			array[p] = swap;
-		}
+		int i = p;
 		int x = array[r];
 
 		for (int j=p; j < r; j++) {
-
-			if (array[j] <= x) {
-			i = i + 1;
+			if (array[j] < x) {
 			swap = array[i];
 			array[i] = array[j];
 			array[j] = swap;
+			i++;
 			}
 
 		}
-		swap = array[i+1];
-		array[i+1] = array[r];
+		swap = array[i];
+		array[i] = array[r];
 		array[r] = swap;
-		return i++;
+		return i;
 	}
 
 
