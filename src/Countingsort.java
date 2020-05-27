@@ -1,68 +1,68 @@
 import java.util.Scanner;
 
-// Java implementation of Counting Sort
 class CountingSort
 {
-	void sort(int arr[])
+	void sort(int array[])
 	{
-		int n = arr.length;
+		int arrayLength = array.length;
 
-		// The swapArray character array that will have sorted arr
-		int[] swapArray = new int[n];
+		//creates swapArray where the sorted array is cached
+		int[] swapArray = new int[arrayLength];
 
 		//finds biggest variable in array
 		int max = 0;
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] > max) max = arr[i] + 1;
+		for(int x = 0; x < array.length; x++) {
+			if(array[x] > max) max = array[x] + 1;
 		}
 
-		// Create a count array to store count of individual
-		// characters and initialize count array as 0
+		//creates a count array and fills it up with zeros
 		int count[] = new int[max];
-		for (int i=0; i<max; ++i)
-			count[i] = 0;
+		for (int x=0; x<max; x++)
+			count[x] = 0;
 
-		// store count of each character
-		for (int i=0; i<n; ++i)
-			++count[arr[i]];
+		//count each character and stores in count array
+		for (int x=0; x<arrayLength; x++)
+			count[array[x]]++;
 
-		// Change count[i] so that count[i] now contains actual
-		// position of this character in swapArray array
-		for (int i=1; i<=max-1; ++i)
-			count[i] += count[i-1];
+		//change count to store the right place per number
+		for (int x=1; x<=max-1; x++)
+			count[x] += count[x-1];
 
-		// Build the swapArray character array
-		// To make it stable we are operating in reverse order.
-		for (int i = n-1; i>=0; i--)
+		//store unsorted numbers from array in right order in swapArray
+		for (int x = arrayLength-1; x>=0; x--)
 		{
-			swapArray[count[arr[i]]-1] = arr[i];
-			--count[arr[i]];
+			swapArray[count[array[x]]-1] = array[x];
+			count[array[x]]--;
 		}
 
-		// Copy the swapArray array to arr, so that arr now
-		// contains sorted characters
-		for (int i = 0; i<n; ++i)
-			arr[i] = swapArray[i];
+		//override the input array with sorted swapArray
+		for (int x = 0; x<arrayLength; x++)
+			array[x] = swapArray[x];
 	}
 
 
 	public static void main(String args[])
 	{
+		//create scanner
 		Scanner s = new Scanner(System.in);
 
-		System.out.println("Enter the amount of numbers to sort:");
-		int length = s.nextInt();
+		//ask user for input
+		System.out.println("How many numbers should be sorted?");
+		int arrayLength = s.nextInt();
 
-		System.out.println("Enter the numbers to sort:");
-		int[] array = new int[length];
-		for(int i=0; i<length; i++ ) {
+		System.out.println("Enter " +arrayLength+ " numbers to be sorted!");
+		int[] array = new int[arrayLength];
+		for(int i=0; i<arrayLength; i++ ) {
 			array[i] = s.nextInt();
 		}
 
+		//create sortMe object
 		CountingSort sortMe = new CountingSort();
 
+		//use sort method to sort array
 		sortMe.sort(array);
 
+		//print the input numbers in sorted order
 		for (int i=0; i<array.length; ++i) {
 			if(i == 0) {
 				System.out.print(array[i]);
@@ -73,5 +73,3 @@ class CountingSort
 		}
 	}
 }
-
-/* geht nur mit bis zu 9-stelligen positiven Zahlen*/
