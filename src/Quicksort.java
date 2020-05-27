@@ -2,22 +2,25 @@ import java.util.Scanner;
 
 public class Quicksort {
 
-	
- 	//int p = 1;
 	int swap;
 	int[] array;
-	//int r = array.length;
 
 	public Quicksort(int[] array) {
 		this.array = array;
 	}
 	
 	public int partition (int p, int r) {
-		int x = array[r];
 		int i = p - 1;
 
+		if (array[r]<=array[p]) {
+			swap = array[r];
+			array[r] = array[p];
+			array[p] = swap;
+		}
+		int x = array[r];
+
 		for (int j=p; j < r; j++) {
-	
+
 			if (array[j] <= x) {
 			i = i + 1;
 			swap = array[i];
@@ -38,7 +41,6 @@ public class Quicksort {
 
 		if (p < r) {
 			q = partition (p, r);
-			System.out.println(q);
 			quicksort(p, q-1);
 			quicksort(q + 1, r);
 		}
@@ -86,7 +88,7 @@ r = last position in the considered part
 first one p = 1 and r = length array
 empty array p and r are the same -> nothing to do -> reason for if p<r
 
-while partially orderring the arrays
+while partially ordering the arrays
 
 puts all the arrays
 	
